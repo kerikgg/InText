@@ -13,7 +13,7 @@ struct InTextApp: App {
 
     var body: some Scene {
         WindowGroup {
-            RegistrationView()
+            AuthContainerView()
         }
     }
 }

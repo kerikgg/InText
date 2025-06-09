@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import SwiftUI
 
 final class RegistrationViewModel: ObservableObject {
     @Published var email = ""
@@ -22,6 +23,8 @@ final class RegistrationViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var registrationSuccess = false
     @Published var showAlert = false
+
+    @AppStorage("isLoggedIn") var isLoggedIn: Bool = false
 
     private let authService = AuthService.shared
     
@@ -77,6 +80,7 @@ final class RegistrationViewModel: ObservableObject {
                 self?.isLoading = false
                 switch result {
                 case .success:
+                    self?.isLoggedIn = true
                     self?.registrationSuccess = true
                 case .failure(let error):
                     self?.registrationError = error.localizedDescription

@@ -28,6 +28,10 @@
 		BA6E24832DCCECC200A54249 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6E24822DCCECC200A54249 /* AppDelegate.swift */; };
 		BA6E24862DCCEEEA00A54249 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6E24852DCCEEEA00A54249 /* UserModel.swift */; };
 		BA6E24882DCCEF2700A54249 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6E24872DCCEF2700A54249 /* AuthService.swift */; };
+		BA8B80D12DE728270031D89E /* AuthorizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8B80D02DE728180031D89E /* AuthorizationView.swift */; };
+		BA8B80D32DE728570031D89E /* AuthorizationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8B80D22DE728480031D89E /* AuthorizationViewModel.swift */; };
+		BA8B80D72DE72AE60031D89E /* AuthContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8B80D62DE72ADC0031D89E /* AuthContainerView.swift */; };
+		BA8B80D92DE72D320031D89E /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8B80D82DE72D290031D89E /* MainTabView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +50,10 @@
 		BA6E24822DCCECC200A54249 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BA6E24852DCCEEEA00A54249 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		BA6E24872DCCEF2700A54249 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		BA8B80D02DE728180031D89E /* AuthorizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationView.swift; sourceTree = "<group>"; };
+		BA8B80D22DE728480031D89E /* AuthorizationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewModel.swift; sourceTree = "<group>"; };
+		BA8B80D62DE72ADC0031D89E /* AuthContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthContainerView.swift; sourceTree = "<group>"; };
+		BA8B80D82DE72D290031D89E /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +93,9 @@
 		BA19B6D12DCCE22A00D5C591 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				BA8B80D82DE72D290031D89E /* MainTabView.swift */,
+				BA8B80D42DE72AB90031D89E /* AuthContainer */,
+				BA8B80CD2DE726930031D89E /* Authorization */,
 				BA19B6DE2DCCE38100D5C591 /* Registration */,
 			);
 			path = Modules;
@@ -183,6 +194,39 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		BA8B80CD2DE726930031D89E /* Authorization */ = {
+			isa = PBXGroup;
+			children = (
+				BA8B80CE2DE726A50031D89E /* View */,
+				BA8B80CF2DE726AB0031D89E /* ViewModel */,
+			);
+			path = Authorization;
+			sourceTree = "<group>";
+		};
+		BA8B80CE2DE726A50031D89E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BA8B80D02DE728180031D89E /* AuthorizationView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BA8B80CF2DE726AB0031D89E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				BA8B80D22DE728480031D89E /* AuthorizationViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		BA8B80D42DE72AB90031D89E /* AuthContainer */ = {
+			isa = PBXGroup;
+			children = (
+				BA8B80D62DE72ADC0031D89E /* AuthContainerView.swift */,
+			);
+			path = AuthContainer;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -268,7 +312,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA377AB02DCE46260077616B /* RegexEnum.swift in Sources */,
+				BA8B80D32DE728570031D89E /* AuthorizationViewModel.swift in Sources */,
 				BA377AB22DCE48D20077616B /* AnimatedGradient.swift in Sources */,
+				BA8B80D12DE728270031D89E /* AuthorizationView.swift in Sources */,
+				BA8B80D72DE72AE60031D89E /* AuthContainerView.swift in Sources */,
 				BA377AA72DCE41A00077616B /* CustomTextField.swift in Sources */,
 				BA377AAD2DCE44BA0077616B /* RegistrationViewModel.swift in Sources */,
 				BA19B6E12DCCE3D500D5C591 /* RegistrationView.swift in Sources */,
@@ -278,6 +325,7 @@
 				BA6E24862DCCEEEA00A54249 /* UserModel.swift in Sources */,
 				BA6E24882DCCEF2700A54249 /* AuthService.swift in Sources */,
 				BA19B6DC2DCCE22A00D5C591 /* InTextApp.swift in Sources */,
+				BA8B80D92DE72D320031D89E /* MainTabView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
