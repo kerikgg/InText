@@ -1,19 +1,25 @@
+//
+//  AuthorizationView.swift
+//  InText
+//
+//  Created by kerik on 28.05.2025.
+//
+
 import SwiftUI
 
-struct RegistrationView: View {
-    @StateObject var viewModel = RegistrationViewModel()
+struct AuthorizationView: View {
+    @StateObject private var viewModel = AuthorizationViewModel()
     @Binding var showLogin: Bool
 
     var body: some View {
         ScrollView(showsIndicators: false) {
-            Image("ReadingBoy")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: UIScreen.main.bounds.width / 1.25, height: UIScreen.main.bounds.width / 1.25)
-
             VStack(spacing: 30) {
+                Image("ReadingBoy")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: UIScreen.main.bounds.width / 1.5)
 
-                Text("Регистрация")
+                Text("Вход")
                     .font(.title)
                     .foregroundColor(.black)
                     .fontWeight(.bold)
@@ -21,20 +27,18 @@ struct RegistrationView: View {
                     .padding(8)
 
                 VStack(spacing: 20) {
-                    CustomTextField(title: "Имя пользователя", text: $viewModel.name, prompt: viewModel.namePrompt)
+                    CustomTextField(title: "Почта", text: $viewModel.email)
 
-                    CustomTextField(title: "Почта", text: $viewModel.email, prompt: viewModel.emailPrompt)
-
-                    CustomTextField(title: "Пароль", text: $viewModel.password, prompt: viewModel.passwordPrompt, isSecure: true)
+                    CustomTextField(title: "Пароль", text: $viewModel.password, isSecure: true)
                 }
                 .padding()
 
                 Button {
-                    viewModel.registerUser()
+                    viewModel.loginUser()
                 } label: {
                     ZStack {
                         if viewModel.canSubmit {
-                            AnimatedGradient(colors: [Color.cyan, Color.purple])
+                            AnimatedGradient(colors: [Color.purple, Color.blue])
                         } else {
                             Rectangle()
                                 .foregroundColor(.gray)
@@ -44,7 +48,7 @@ struct RegistrationView: View {
                             ProgressView()
                                 .progressViewStyle(CircularProgressViewStyle(tint: .white))
                         } else {
-                            Text("Продолжить")
+                            Text("Войти")
                                 .foregroundColor(.white)
                                 .fontDesign(.rounded)
                                 .fontWeight(.semibold)
@@ -55,19 +59,26 @@ struct RegistrationView: View {
                 }
                 .disabled(!viewModel.canSubmit || viewModel.isLoading)
 
-                Button("Уже есть аккаунт? Войти") {
-                    showLogin = true
+                Button("Нет аккаунта? Зарегистрироваться") {
+                    showLogin = false
                 }
                 .font(.footnote)
                 .foregroundColor(.blue)
-            }
 
+                if viewModel.loginSuccess {
+                    Text("Успешный вход!")
+                        .foregroundColor(.green)
+                        .font(.headline)
+                        .padding()
+                }
+            }
+            .padding()
         }
         .scrollDisabled(true)
         .alert(isPresented: $viewModel.showAlert) {
             Alert(
-                title: Text("Ошибка регистрации"),
-                message: Text(viewModel.registrationError ?? "Неизвестная ошибка."),
+                title: Text("Ошибка входа"),
+                message: Text(viewModel.loginError ?? "Неизвестная ошибка."),
                 dismissButton: .default(Text("ОК"))
             )
         }
