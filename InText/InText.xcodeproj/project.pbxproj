@@ -32,6 +32,14 @@
 		BA8B80D32DE728570031D89E /* AuthorizationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8B80D22DE728480031D89E /* AuthorizationViewModel.swift */; };
 		BA8B80D72DE72AE60031D89E /* AuthContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8B80D62DE72ADC0031D89E /* AuthContainerView.swift */; };
 		BA8B80D92DE72D320031D89E /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8B80D82DE72D290031D89E /* MainTabView.swift */; };
+		BAD3C1022DF7434A0020AF34 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD3C1012DF743440020AF34 /* ProfileViewModel.swift */; };
+		BAD3C1042DF744900020AF34 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD3C1032DF744900020AF34 /* ProfileView.swift */; };
+		BAD3C1062DF747F30020AF34 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD3C1052DF747ED0020AF34 /* SettingsView.swift */; };
+		BAD3C1082DF752D10020AF34 /* SettingsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD3C1072DF752CA0020AF34 /* SettingsButton.swift */; };
+		BAD3C10C2DF764DD0020AF34 /* ImageUploadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD3C10B2DF764D30020AF34 /* ImageUploadService.swift */; };
+		BAD3C10E2DF7662B0020AF34 /* AvatarPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD3C10D2DF766220020AF34 /* AvatarPickerView.swift */; };
+		BAD3C1102DF770BD0020AF34 /* ProfileAvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD3C10F2DF770B40020AF34 /* ProfileAvatarView.swift */; };
+		BAD3C1122DF772510020AF34 /* ProfileInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD3C1112DF772490020AF34 /* ProfileInfoView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +62,14 @@
 		BA8B80D22DE728480031D89E /* AuthorizationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewModel.swift; sourceTree = "<group>"; };
 		BA8B80D62DE72ADC0031D89E /* AuthContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthContainerView.swift; sourceTree = "<group>"; };
 		BA8B80D82DE72D290031D89E /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		BAD3C1012DF743440020AF34 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		BAD3C1032DF744900020AF34 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		BAD3C1052DF747ED0020AF34 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		BAD3C1072DF752CA0020AF34 /* SettingsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsButton.swift; sourceTree = "<group>"; };
+		BAD3C10B2DF764D30020AF34 /* ImageUploadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploadService.swift; sourceTree = "<group>"; };
+		BAD3C10D2DF766220020AF34 /* AvatarPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarPickerView.swift; sourceTree = "<group>"; };
+		BAD3C10F2DF770B40020AF34 /* ProfileAvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAvatarView.swift; sourceTree = "<group>"; };
+		BAD3C1112DF772490020AF34 /* ProfileInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				BA8B80D82DE72D290031D89E /* MainTabView.swift */,
+				BAD3C0FB2DF741BF0020AF34 /* Profile */,
 				BA8B80D42DE72AB90031D89E /* AuthContainer */,
 				BA8B80CD2DE726930031D89E /* Authorization */,
 				BA19B6DE2DCCE38100D5C591 /* Registration */,
@@ -112,6 +129,7 @@
 		BA19B6D42DCCE22A00D5C591 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				BAD3C10B2DF764D30020AF34 /* ImageUploadService.swift */,
 				BA6E24872DCCEF2700A54249 /* AuthService.swift */,
 			);
 			path = Services;
@@ -138,8 +156,11 @@
 			isa = PBXGroup;
 			children = (
 				BA377AA82DCE42150077616B /* Styles */,
+				BAD3C1112DF772490020AF34 /* ProfileInfoView.swift */,
+				BAD3C10F2DF770B40020AF34 /* ProfileAvatarView.swift */,
 				BA377AA62DCE41A00077616B /* CustomTextField.swift */,
 				BA377AB12DCE48CA0077616B /* AnimatedGradient.swift */,
+				BAD3C1072DF752CA0020AF34 /* SettingsButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -225,6 +246,33 @@
 				BA8B80D62DE72ADC0031D89E /* AuthContainerView.swift */,
 			);
 			path = AuthContainer;
+			sourceTree = "<group>";
+		};
+		BAD3C0FB2DF741BF0020AF34 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				BAD3C0FE2DF7423A0020AF34 /* View */,
+				BAD3C0FD2DF742310020AF34 /* ViewModel */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		BAD3C0FD2DF742310020AF34 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				BAD3C1012DF743440020AF34 /* ProfileViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		BAD3C0FE2DF7423A0020AF34 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BAD3C10D2DF766220020AF34 /* AvatarPickerView.swift */,
+				BAD3C1052DF747ED0020AF34 /* SettingsView.swift */,
+				BAD3C1032DF744900020AF34 /* ProfileView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -314,17 +362,25 @@
 				BA377AB02DCE46260077616B /* RegexEnum.swift in Sources */,
 				BA8B80D32DE728570031D89E /* AuthorizationViewModel.swift in Sources */,
 				BA377AB22DCE48D20077616B /* AnimatedGradient.swift in Sources */,
+				BAD3C1102DF770BD0020AF34 /* ProfileAvatarView.swift in Sources */,
+				BAD3C1062DF747F30020AF34 /* SettingsView.swift in Sources */,
 				BA8B80D12DE728270031D89E /* AuthorizationView.swift in Sources */,
 				BA8B80D72DE72AE60031D89E /* AuthContainerView.swift in Sources */,
 				BA377AA72DCE41A00077616B /* CustomTextField.swift in Sources */,
 				BA377AAD2DCE44BA0077616B /* RegistrationViewModel.swift in Sources */,
+				BAD3C10C2DF764DD0020AF34 /* ImageUploadService.swift in Sources */,
 				BA19B6E12DCCE3D500D5C591 /* RegistrationView.swift in Sources */,
 				BA377AAA2DCE42290077616B /* CustomTextFieldStyle.swift in Sources */,
+				BAD3C1042DF744900020AF34 /* ProfileView.swift in Sources */,
+				BAD3C1082DF752D10020AF34 /* SettingsButton.swift in Sources */,
 				BA19B6DB2DCCE22A00D5C591 /* ContentView.swift in Sources */,
+				BAD3C10E2DF7662B0020AF34 /* AvatarPickerView.swift in Sources */,
 				BA6E24832DCCECC200A54249 /* AppDelegate.swift in Sources */,
+				BAD3C1122DF772510020AF34 /* ProfileInfoView.swift in Sources */,
 				BA6E24862DCCEEEA00A54249 /* UserModel.swift in Sources */,
 				BA6E24882DCCEF2700A54249 /* AuthService.swift in Sources */,
 				BA19B6DC2DCCE22A00D5C591 /* InTextApp.swift in Sources */,
+				BAD3C1022DF7434A0020AF34 /* ProfileViewModel.swift in Sources */,
 				BA8B80D92DE72D320031D89E /* MainTabView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -15,7 +15,7 @@ struct MainTabView: View {
                     Label("Главная", systemImage: "house")
                 }
 
-            Text("Профиль")
+            ProfileView()
                 .tabItem {
                     Label("Профиль", systemImage: "person.circle")
                 }
