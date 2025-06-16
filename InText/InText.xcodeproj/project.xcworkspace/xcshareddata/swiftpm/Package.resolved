@@ -1,5 +1,5 @@
 {
-  "originHash" : "a1569f9895aa2be8e24832f98525d5da4eb90b5d158a82691c15b47eb72a13d7",
+  "originHash" : "247ddb71c1002be69d2a6b236fb3d2ad1aec874483945edc1fb249698e4d0ae0",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -71,6 +71,15 @@
       "state" : {
         "revision" : "4d70340d55d7d07cc2fdf8e8125c4c126c1d5f35",
         "version" : "4.4.0"
+      }
+    },
+    {
+      "identity" : "imageocrui",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/fatihdurmaz/ImageOCRUI",
+      "state" : {
+        "branch" : "main",
+        "revision" : "d97b084385f99244089922ed376f5b61ba9d9dcb"
       }
     },
     {
