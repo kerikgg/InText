@@ -4,6 +4,8 @@
         <attribute name="content" attributeType="String"/>
         <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" attributeType="String"/>
+        <attribute name="keywords" optional="YES" attributeType="String"/>
+        <attribute name="summary" optional="YES" attributeType="String"/>
         <attribute name="title" attributeType="String"/>
     </entity>
 </model>

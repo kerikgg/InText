@@ -72,21 +72,16 @@ struct TextsView: View {
                     List {
                         ForEach(viewModel.texts) { text in
                             NavigationLink(destination: TextDetailView(
-                                title: text.title,
-                                content: text.content,
+                                text: text,
                                 allowSaving: false
                             )) {
                                 VStack(alignment: .leading, spacing: 4) {
                                     Text(text.title)
                                         .font(.headline)
 
-                                    Text(text.createdAt.formatted(
-                                        .dateTime
-                                            .locale(Locale(identifier: "ru_RU"))
-                                            .day().month().year().hour().minute()
-                                    ))
-                                    .font(.caption)
-                                    .foregroundColor(.gray)
+                                    Text(text.createdAt.formattedString)
+                                        .font(.caption)
+                                        .foregroundColor(.gray)
                                 }
                             }
                         }

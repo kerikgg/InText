@@ -20,6 +20,8 @@ extension TextEntity {
     @NSManaged public var title: String?
     @NSManaged public var content: String?
     @NSManaged public var createdAt: Date?
+    @NSManaged public var summary: String?
+    @NSManaged public var keywords: String?
 
 }
 

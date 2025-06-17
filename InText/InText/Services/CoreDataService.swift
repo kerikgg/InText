@@ -32,7 +32,9 @@ final class CoreDataService {
                     id: $0.id ?? UUID().uuidString,
                     title: $0.title ?? "",
                     content: $0.content ?? "",
-                    createdAt: $0.createdAt ?? Date()
+                    createdAt: $0.createdAt ?? Date(),
+                    summary: $0.summary,
+                    keywords: $0.keywords?.components(separatedBy: ", ")
                 )
             }
         } catch {
@@ -63,6 +65,25 @@ final class CoreDataService {
             result.title = newTitle
             result.content = newContent
             saveContext()
+        }
+    }
+
+    func updateAnalysis(for id: String, summary: String, keywords: [String]) {
+        let request: NSFetchRequest<TextEntity> = TextEntity.fetchRequest()
+        request.predicate = NSPredicate(format: "id == %@", id)
+
+        do {
+            if let textEntity = try context.fetch(request).first {
+                textEntity.summary = summary
+                textEntity.keywords = keywords.joined(separator: ", ")
+
+                try context.save()
+                print("Анализ успешно сохранён в Core Data")
+            } else {
+                print("Текст с id \(id) не найден")
+            }
+        } catch {
+            print("Ошибка при обновлении анализа: \(error)")
         }
     }
 
