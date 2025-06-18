@@ -56,7 +56,14 @@
 import SwiftUI
 
 struct TextsView: View {
-    @StateObject private var viewModel = TextsViewModel()
+    let bookId: String
+    @StateObject private var viewModel: TextsViewModel
+
+    init(bookId: String) {
+        self.bookId = bookId
+        _viewModel = StateObject(wrappedValue: TextsViewModel(bookId: bookId))
+    }
+
     @State private var showAddText = false
 
     var body: some View {
@@ -108,7 +115,7 @@ struct TextsView: View {
             .sheet(isPresented: $showAddText, onDismiss: {
                 viewModel.fetchTexts() // обновим после добавления
             }) {
-                AddTextView()
+                AddTextView(bookId: bookId)
             }
         }
         .onAppear {

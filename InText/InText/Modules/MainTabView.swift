@@ -1,19 +1,16 @@
-//
-//  MainTabView.swift
-//  InText
-//
-//  Created by kerik on 28.05.2025.
-//
-
 import SwiftUI
 
 struct MainTabView: View {
     var body: some View {
         TabView {
-            TextsView()
-            //TestView()
+            BooksView()
                 .tabItem {
                     Label("Главная", systemImage: "house")
+                }
+
+            TestsView()
+                .tabItem {
+                    Label("Тесты", systemImage: "questionmark.circle")
                 }
 
             ProfileView()
@@ -21,5 +18,6 @@ struct MainTabView: View {
                     Label("Профиль", systemImage: "person.circle")
                 }
         }
+        .tint(Color.purple)
     }
 }

@@ -59,6 +59,30 @@
 		BA8E165A2DFF282400538859 /* RecognizedTextItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8E16592DFF281E00538859 /* RecognizedTextItem.swift */; };
 		BA8E165F2DFF3D3B00538859 /* ImageOCRUI in Frameworks */ = {isa = PBXBuildFile; productRef = BA8E165E2DFF3D3B00538859 /* ImageOCRUI */; };
 		BA8E16632DFF428900538859 /* TextEditorSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8E16622DFF428500538859 /* TextEditorSheet.swift */; };
+		BA8F6F7D2E0171D000A3BEB0 /* BookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8F6F7C2E0171CC00A3BEB0 /* BookModel.swift */; };
+		BA8F6F802E0172BA00A3BEB0 /* BookEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8F6F7E2E0172BA00A3BEB0 /* BookEntity+CoreDataClass.swift */; };
+		BA8F6F812E0172BA00A3BEB0 /* BookEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8F6F7F2E0172BA00A3BEB0 /* BookEntity+CoreDataProperties.swift */; };
+		BA8F6F832E0172F100A3BEB0 /* BookService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8F6F822E0172EE00A3BEB0 /* BookService.swift */; };
+		BA8F6F852E01731800A3BEB0 /* AddBookViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8F6F842E01731200A3BEB0 /* AddBookViewModel.swift */; };
+		BA8F6F872E01733500A3BEB0 /* AddBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8F6F862E01733000A3BEB0 /* AddBookView.swift */; };
+		BA8F6F892E0175FB00A3BEB0 /* BooksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8F6F882E0175F500A3BEB0 /* BooksView.swift */; };
+		BA8F6F8B2E01760E00A3BEB0 /* BookDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8F6F8A2E01760900A3BEB0 /* BookDetailView.swift */; };
+		BA8F6F8D2E01766300A3BEB0 /* BooksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8F6F8C2E01765C00A3BEB0 /* BooksViewModel.swift */; };
+		BA8F6F8F2E01AFF700A3BEB0 /* SourceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8F6F8E2E01AFF400A3BEB0 /* SourceType.swift */; };
+		BA8F6F912E01B13E00A3BEB0 /* BookRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8F6F902E01B13900A3BEB0 /* BookRow.swift */; };
+		BA8F6F932E01D36800A3BEB0 /* ProfileStatsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8F6F922E01D35C00A3BEB0 /* ProfileStatsViewModel.swift */; };
+		BA8F6F952E01D3F500A3BEB0 /* StatItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8F6F942E01D3B500A3BEB0 /* StatItemView.swift */; };
+		BA8F6F972E01DA9800A3BEB0 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8F6F962E01DA9500A3BEB0 /* StatsView.swift */; };
+		BA8F6F992E01E5B700A3BEB0 /* KeywordFrequency.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8F6F982E01E5B300A3BEB0 /* KeywordFrequency.swift */; };
+		BA8F6F9C2E01E69400A3BEB0 /* KeywordChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8F6F9B2E01E68F00A3BEB0 /* KeywordChartView.swift */; };
+		BA8F6FA02E01FACA00A3BEB0 /* LemmatizerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8F6F9F2E01FAC900A3BEB0 /* LemmatizerService.swift */; };
+		BA8F6FA62E020BAF00A3BEB0 /* QuizQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8F6FA52E020BA300A3BEB0 /* QuizQuestion.swift */; };
+		BA8F6FA82E020C4D00A3BEB0 /* QuizViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8F6FA72E020C4300A3BEB0 /* QuizViewModel.swift */; };
+		BA8F6FAA2E020C7000A3BEB0 /* QuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8F6FA92E020C6A00A3BEB0 /* QuizView.swift */; };
+		BA8F6FAC2E020CAA00A3BEB0 /* TestsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8F6FAB2E020CA400A3BEB0 /* TestsView.swift */; };
+		BAB470EA2E02D998001FAB8A /* IdentifiableText.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB470E92E02D993001FAB8A /* IdentifiableText.swift */; };
+		BAB470EC2E02E2FB001FAB8A /* ActionSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB470EB2E02E2F5001FAB8A /* ActionSection.swift */; };
+		BAB470EE2E02E518001FAB8A /* AppThemeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB470ED2E02E512001FAB8A /* AppThemeService.swift */; };
 		BAD3C1022DF7434A0020AF34 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD3C1012DF743440020AF34 /* ProfileViewModel.swift */; };
 		BAD3C1042DF744900020AF34 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD3C1032DF744900020AF34 /* ProfileView.swift */; };
 		BAD3C1062DF747F30020AF34 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD3C1052DF747ED0020AF34 /* SettingsView.swift */; };
@@ -115,6 +139,30 @@
 		BA8E164B2DFF012B00538859 /* FileImportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileImportService.swift; sourceTree = "<group>"; };
 		BA8E16592DFF281E00538859 /* RecognizedTextItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognizedTextItem.swift; sourceTree = "<group>"; };
 		BA8E16622DFF428500538859 /* TextEditorSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditorSheet.swift; sourceTree = "<group>"; };
+		BA8F6F7C2E0171CC00A3BEB0 /* BookModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookModel.swift; sourceTree = "<group>"; };
+		BA8F6F7E2E0172BA00A3BEB0 /* BookEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "BookEntity+CoreDataClass.swift"; path = "../BookEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		BA8F6F7F2E0172BA00A3BEB0 /* BookEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "BookEntity+CoreDataProperties.swift"; path = "../BookEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		BA8F6F822E0172EE00A3BEB0 /* BookService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookService.swift; sourceTree = "<group>"; };
+		BA8F6F842E01731200A3BEB0 /* AddBookViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBookViewModel.swift; sourceTree = "<group>"; };
+		BA8F6F862E01733000A3BEB0 /* AddBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBookView.swift; sourceTree = "<group>"; };
+		BA8F6F882E0175F500A3BEB0 /* BooksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksView.swift; sourceTree = "<group>"; };
+		BA8F6F8A2E01760900A3BEB0 /* BookDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailView.swift; sourceTree = "<group>"; };
+		BA8F6F8C2E01765C00A3BEB0 /* BooksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksViewModel.swift; sourceTree = "<group>"; };
+		BA8F6F8E2E01AFF400A3BEB0 /* SourceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceType.swift; sourceTree = "<group>"; };
+		BA8F6F902E01B13900A3BEB0 /* BookRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookRow.swift; sourceTree = "<group>"; };
+		BA8F6F922E01D35C00A3BEB0 /* ProfileStatsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStatsViewModel.swift; sourceTree = "<group>"; };
+		BA8F6F942E01D3B500A3BEB0 /* StatItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatItemView.swift; sourceTree = "<group>"; };
+		BA8F6F962E01DA9500A3BEB0 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
+		BA8F6F982E01E5B300A3BEB0 /* KeywordFrequency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordFrequency.swift; sourceTree = "<group>"; };
+		BA8F6F9B2E01E68F00A3BEB0 /* KeywordChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordChartView.swift; sourceTree = "<group>"; };
+		BA8F6F9F2E01FAC900A3BEB0 /* LemmatizerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LemmatizerService.swift; sourceTree = "<group>"; };
+		BA8F6FA52E020BA300A3BEB0 /* QuizQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizQuestion.swift; sourceTree = "<group>"; };
+		BA8F6FA72E020C4300A3BEB0 /* QuizViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewModel.swift; sourceTree = "<group>"; };
+		BA8F6FA92E020C6A00A3BEB0 /* QuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizView.swift; sourceTree = "<group>"; };
+		BA8F6FAB2E020CA400A3BEB0 /* TestsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestsView.swift; sourceTree = "<group>"; };
+		BAB470E92E02D993001FAB8A /* IdentifiableText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableText.swift; sourceTree = "<group>"; };
+		BAB470EB2E02E2F5001FAB8A /* ActionSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSection.swift; sourceTree = "<group>"; };
+		BAB470ED2E02E512001FAB8A /* AppThemeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppThemeService.swift; sourceTree = "<group>"; };
 		BAD3C1012DF743440020AF34 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		BAD3C1032DF744900020AF34 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		BAD3C1052DF747ED0020AF34 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -164,6 +212,8 @@
 			isa = PBXGroup;
 			children = (
 				BA8B80D82DE72D290031D89E /* MainTabView.swift */,
+				BA8F6FA12E020B0B00A3BEB0 /* TestScreen */,
+				BA8F6F782E01719D00A3BEB0 /* BooksScreen */,
 				BA5B57B62DFDB8EC0067FD29 /* AddTextScreen */,
 				BA5B579C2DFDA73C0067FD29 /* TextsScreen */,
 				BAD3C0FB2DF741BF0020AF34 /* Profile */,
@@ -185,6 +235,9 @@
 		BA19B6D42DCCE22A00D5C591 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				BAB470ED2E02E512001FAB8A /* AppThemeService.swift */,
+				BA8F6F9F2E01FAC900A3BEB0 /* LemmatizerService.swift */,
+				BA8F6F822E0172EE00A3BEB0 /* BookService.swift */,
 				BA8B918A2E00CC4D00B9F67D /* LocalAnalysisService.swift */,
 				BA8B91862E009B0800B9F67D /* TextsService.swift */,
 				BA8B917E2E0096F300B9F67D /* NLPService.swift */,
@@ -216,6 +269,11 @@
 		BA19B6DD2DCCE35E00D5C591 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				BAB470EB2E02E2F5001FAB8A /* ActionSection.swift */,
+				BA8F6F9B2E01E68F00A3BEB0 /* KeywordChartView.swift */,
+				BA8F6F962E01DA9500A3BEB0 /* StatsView.swift */,
+				BA8F6F942E01D3B500A3BEB0 /* StatItemView.swift */,
+				BA8F6F902E01B13900A3BEB0 /* BookRow.swift */,
 				BA8B91902E00D83B00B9F67D /* AnimatedAnalysisView.swift */,
 				BA8B918E2E00D71100B9F67D /* AnalysisLoadingView.swift */,
 				BAD3C1112DF772490020AF34 /* ProfileInfoView.swift */,
@@ -266,6 +324,9 @@
 		BA377AAE2DCE460B0077616B /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				BAB470E92E02D993001FAB8A /* IdentifiableText.swift */,
+				BA8F6F982E01E5B300A3BEB0 /* KeywordFrequency.swift */,
+				BA8F6F8E2E01AFF400A3BEB0 /* SourceType.swift */,
 				BA8B918C2E00D06A00B9F67D /* AnalysisMode.swift */,
 				BA8B91882E009C8500B9F67D /* ExtDate.swift */,
 				BA8B91822E0098BE00B9F67D /* SecretsEnum.swift */,
@@ -312,6 +373,8 @@
 		BA5B57A72DFDA9920067FD29 /* Database */ = {
 			isa = PBXGroup;
 			children = (
+				BA8F6F7E2E0172BA00A3BEB0 /* BookEntity+CoreDataClass.swift */,
+				BA8F6F7F2E0172BA00A3BEB0 /* BookEntity+CoreDataProperties.swift */,
 				BA5B57B02DFDAC090067FD29 /* TextEntity+CoreDataClass.swift */,
 				BA5B57B12DFDAC090067FD29 /* TextEntity+CoreDataProperties.swift */,
 				BA5B57AE2DFDAB730067FD29 /* PersistenceController.swift */,
@@ -400,6 +463,78 @@
 			path = Scanner;
 			sourceTree = "<group>";
 		};
+		BA8F6F782E01719D00A3BEB0 /* BooksScreen */ = {
+			isa = PBXGroup;
+			children = (
+				BA8F6F792E0171B000A3BEB0 /* Model */,
+				BA8F6F7A2E0171B500A3BEB0 /* View */,
+				BA8F6F7B2E0171BB00A3BEB0 /* ViewModel */,
+			);
+			path = BooksScreen;
+			sourceTree = "<group>";
+		};
+		BA8F6F792E0171B000A3BEB0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BA8F6F7C2E0171CC00A3BEB0 /* BookModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		BA8F6F7A2E0171B500A3BEB0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BA8F6F8A2E01760900A3BEB0 /* BookDetailView.swift */,
+				BA8F6F882E0175F500A3BEB0 /* BooksView.swift */,
+				BA8F6F862E01733000A3BEB0 /* AddBookView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BA8F6F7B2E0171BB00A3BEB0 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				BA8F6F8C2E01765C00A3BEB0 /* BooksViewModel.swift */,
+				BA8F6F842E01731200A3BEB0 /* AddBookViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		BA8F6FA12E020B0B00A3BEB0 /* TestScreen */ = {
+			isa = PBXGroup;
+			children = (
+				BA8F6FA22E020B3100A3BEB0 /* Model */,
+				BA8F6FA32E020B3700A3BEB0 /* View */,
+				BA8F6FA42E020B3C00A3BEB0 /* ViewModel */,
+			);
+			path = TestScreen;
+			sourceTree = "<group>";
+		};
+		BA8F6FA22E020B3100A3BEB0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BA8F6FA52E020BA300A3BEB0 /* QuizQuestion.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		BA8F6FA32E020B3700A3BEB0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BA8F6FAB2E020CA400A3BEB0 /* TestsView.swift */,
+				BA8F6FA92E020C6A00A3BEB0 /* QuizView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BA8F6FA42E020B3C00A3BEB0 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				BA8F6FA72E020C4300A3BEB0 /* QuizViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		BAD3C0FB2DF741BF0020AF34 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -412,6 +547,7 @@
 		BAD3C0FD2DF742310020AF34 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				BA8F6F922E01D35C00A3BEB0 /* ProfileStatsViewModel.swift */,
 				BAD3C1012DF743440020AF34 /* ProfileViewModel.swift */,
 			);
 			path = ViewModel;
@@ -515,11 +651,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA377AB02DCE46260077616B /* RegexEnum.swift in Sources */,
+				BA8F6F872E01733500A3BEB0 /* AddBookView.swift in Sources */,
 				BA5B57A62DFDA83F0067FD29 /* Database.xcdatamodeld in Sources */,
 				BA8B91832E0098C300B9F67D /* SecretsEnum.swift in Sources */,
 				BA5B57BE2DFDB96C0067FD29 /* MainActionButtonStyle.swift in Sources */,
 				BA5B57C22DFDBB250067FD29 /* OCRView.swift in Sources */,
+				BA8F6FA62E020BAF00A3BEB0 /* QuizQuestion.swift in Sources */,
 				BA8B917F2E0096F900B9F67D /* NLPService.swift in Sources */,
+				BAB470EA2E02D998001FAB8A /* IdentifiableText.swift in Sources */,
 				BA8B91872E009B1000B9F67D /* TextsService.swift in Sources */,
 				BA8B918B2E00CC5700B9F67D /* LocalAnalysisService.swift in Sources */,
 				BA8B80D32DE728570031D89E /* AuthorizationViewModel.swift in Sources */,
@@ -529,11 +668,19 @@
 				BA8B80D12DE728270031D89E /* AuthorizationView.swift in Sources */,
 				BA5B57AF2DFDAB790067FD29 /* PersistenceController.swift in Sources */,
 				BA8B80D72DE72AE60031D89E /* AuthContainerView.swift in Sources */,
+				BA8F6FA02E01FACA00A3BEB0 /* LemmatizerService.swift in Sources */,
+				BA8F6F8D2E01766300A3BEB0 /* BooksViewModel.swift in Sources */,
 				BA377AA72DCE41A00077616B /* CustomTextField.swift in Sources */,
+				BA8F6F932E01D36800A3BEB0 /* ProfileStatsViewModel.swift in Sources */,
+				BA8F6F832E0172F100A3BEB0 /* BookService.swift in Sources */,
 				BA377AAD2DCE44BA0077616B /* RegistrationViewModel.swift in Sources */,
+				BA8F6F8F2E01AFF700A3BEB0 /* SourceType.swift in Sources */,
+				BA8F6F972E01DA9800A3BEB0 /* StatsView.swift in Sources */,
 				BA5B57BA2DFDB90E0067FD29 /* AddTextViewModel.swift in Sources */,
 				BAD3C10C2DF764DD0020AF34 /* ImageUploadService.swift in Sources */,
 				BA19B6E12DCCE3D500D5C591 /* RegistrationView.swift in Sources */,
+				BA8F6F802E0172BA00A3BEB0 /* BookEntity+CoreDataClass.swift in Sources */,
+				BA8F6F812E0172BA00A3BEB0 /* BookEntity+CoreDataProperties.swift in Sources */,
 				BA8E164A2DFEE74700538859 /* TextDetailView.swift in Sources */,
 				BA377AAA2DCE42290077616B /* CustomTextFieldStyle.swift in Sources */,
 				BAD3C1042DF744900020AF34 /* ProfileView.swift in Sources */,
@@ -541,14 +688,23 @@
 				BA5B57BC2DFDB94C0067FD29 /* AddTextView.swift in Sources */,
 				BA8B918F2E00D71800B9F67D /* AnalysisLoadingView.swift in Sources */,
 				BAD3C1082DF752D10020AF34 /* SettingsButton.swift in Sources */,
+				BA8F6F9C2E01E69400A3BEB0 /* KeywordChartView.swift in Sources */,
 				BAD3C10E2DF7662B0020AF34 /* AvatarPickerView.swift in Sources */,
 				BA8E165A2DFF282400538859 /* RecognizedTextItem.swift in Sources */,
+				BA8F6F912E01B13E00A3BEB0 /* BookRow.swift in Sources */,
+				BAB470EC2E02E2FB001FAB8A /* ActionSection.swift in Sources */,
+				BA8F6FA82E020C4D00A3BEB0 /* QuizViewModel.swift in Sources */,
+				BA8F6FAC2E020CAA00A3BEB0 /* TestsView.swift in Sources */,
 				BA5B57C02DFDBB080067FD29 /* ManualTextEntryView.swift in Sources */,
 				BA5B57B22DFDAC090067FD29 /* TextEntity+CoreDataClass.swift in Sources */,
 				BA5B57B52DFDB7D90067FD29 /* TextsView.swift in Sources */,
 				BA8B918D2E00D07500B9F67D /* AnalysisMode.swift in Sources */,
 				BA8E16632DFF428900538859 /* TextEditorSheet.swift in Sources */,
 				BA5B57B32DFDAC090067FD29 /* TextEntity+CoreDataProperties.swift in Sources */,
+				BA8F6F992E01E5B700A3BEB0 /* KeywordFrequency.swift in Sources */,
+				BA8F6FAA2E020C7000A3BEB0 /* QuizView.swift in Sources */,
+				BAB470EE2E02E518001FAB8A /* AppThemeService.swift in Sources */,
+				BA8F6F952E01D3F500A3BEB0 /* StatItemView.swift in Sources */,
 				BA5B57A32DFDA7800067FD29 /* TextModel.swift in Sources */,
 				BA5B57AD2DFDAAF50067FD29 /* CoreDataService.swift in Sources */,
 				BA8B91852E00994400B9F67D /* TextAnalysisViewModel.swift in Sources */,
@@ -557,11 +713,15 @@
 				BA6E24862DCCEEEA00A54249 /* UserModel.swift in Sources */,
 				BA8E164C2DFF013300538859 /* FileImportService.swift in Sources */,
 				BA8B91892E009C8700B9F67D /* ExtDate.swift in Sources */,
+				BA8F6F892E0175FB00A3BEB0 /* BooksView.swift in Sources */,
+				BA8F6F8B2E01760E00A3BEB0 /* BookDetailView.swift in Sources */,
+				BA8F6F852E01731800A3BEB0 /* AddBookViewModel.swift in Sources */,
 				BA5B579E2DFDA7580067FD29 /* TextsViewModel.swift in Sources */,
 				BA6E24882DCCEF2700A54249 /* AuthService.swift in Sources */,
 				BA19B6DC2DCCE22A00D5C591 /* InTextApp.swift in Sources */,
 				BAD3C1022DF7434A0020AF34 /* ProfileViewModel.swift in Sources */,
 				BA8B80D92DE72D320031D89E /* MainTabView.swift in Sources */,
+				BA8F6F7D2E0171D000A3BEB0 /* BookModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

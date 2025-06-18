@@ -96,8 +96,130 @@
 //    ]
 //}
 
+//import Foundation
+//import NaturalLanguage
+//
+//struct LocalAnalysisResult {
+//    let summary: String
+//    let keywords: [String]
+//}
+//
+//final class LocalAnalysisService {
+//
+//    private static let stopWords: Set<String> = [
+//        "и", "в", "во", "не", "что", "он", "на", "я", "с", "со", "как", "а", "то", "все", "она", "так", "его",
+//        "но", "да", "ты", "к", "у", "же", "вы", "за", "бы", "по", "только", "ее", "мне", "было", "вот", "от",
+//        "меня", "еще", "нет", "о", "из", "ему", "теперь", "когда", "даже", "ну", "вдруг", "ли", "если", "уже",
+//        "или", "ни", "быть", "был", "него", "до", "вас", "нибудь", "опять", "уж", "вам", "ведь", "там", "потом",
+//        "себя", "ничего", "ей", "может", "они", "тут", "где", "есть", "надо", "ней", "для", "мы", "тебя", "их",
+//        "чем", "была", "сам", "чтоб", "без", "будто", "чего", "раз", "тоже", "себе", "под", "будет", "ж", "тогда",
+//        "кто", "этот"
+//    ]
+//
+//    static func analyze(text: String) -> LocalAnalysisResult {
+//        let sentences = splitIntoSentences(text)
+//        let keywords = extractKeywords(from: text)
+//        let lemmatizedKeywords = keywords.map { lemmatize($0) }
+//
+//        let ranked = rankSentences(sentences, keywords: Set(lemmatizedKeywords))
+//        let topSentences = ranked
+//            .sorted { $0.score > $1.score }
+//            .prefix(3)
+//            .map { $0.sentence }
+//
+//        let summarySentences = sentences.filter { topSentences.contains($0) }
+//        let cleanedSummary = removeSimilarSentences(from: summarySentences)
+//            .joined(separator: "\n\n")
+//
+//        return LocalAnalysisResult(
+//            summary: cleanedSummary,
+//            keywords: Array(Set(lemmatizedKeywords)).prefix(10).map { $0 }
+//        )
+//    }
+//
+//    // MARK: - Helpers
+//
+//    private static func splitIntoSentences(_ text: String) -> [String] {
+//        var sentences: [String] = []
+//        let tokenizer = NLTokenizer(unit: .sentence)
+//        tokenizer.string = text
+//        tokenizer.enumerateTokens(in: text.startIndex..<text.endIndex) { range, _ in
+//            let sentence = String(text[range]).trimmingCharacters(in: .whitespacesAndNewlines)
+//            if !sentence.isEmpty {
+//                sentences.append(sentence)
+//            }
+//            return true
+//        }
+//        return sentences
+//    }
+//
+//    private static func extractKeywords(from text: String) -> [String] {
+//        var keywords: [String] = []
+//
+//        let tagger = NLTagger(tagSchemes: [.lexicalClass, .lemma])
+//        tagger.string = text
+//
+//        let options: NLTagger.Options = [.omitPunctuation, .omitWhitespace, .joinNames]
+//
+//        tagger.enumerateTags(in: text.startIndex..<text.endIndex,
+//                             unit: .word,
+//                             scheme: .lexicalClass,
+//                             options: options) { tag, range in
+//            guard tag == .noun || tag == .verb else { return true }
+//
+//            let word = String(text[range]).lowercased()
+//            let lemma = lemmatize(word)
+//
+//            if !stopWords.contains(lemma) {
+//                keywords.append(lemma)
+//            }
+//            return true
+//        }
+//
+//        return keywords
+//    }
+//
+//    private static func lemmatize(_ word: String) -> String {
+//        let tagger = NLTagger(tagSchemes: [.lemma])
+//        tagger.string = word
+//
+//        let range = word.startIndex..<word.endIndex
+//        let lemma = tagger.tag(at: word.startIndex, unit: .word, scheme: .lemma).0?.rawValue
+//
+//        return lemma?.lowercased() ?? word.lowercased()
+//    }
+//
+//    private static func rankSentences(_ sentences: [String], keywords: Set<String>) -> [(sentence: String, score: Int)] {
+//        return sentences.map { sentence in
+//            let words = sentence.lowercased().components(separatedBy: CharacterSet.alphanumerics.inverted)
+//            let lemmas = words.map { lemmatize($0) }
+//            let score = lemmas.filter { keywords.contains($0) }.count
+//            return (sentence: sentence, score: score)
+//        }
+//    }
+//
+//    private static func removeSimilarSentences(from sentences: [String]) -> [String] {
+//        var result: [String] = []
+//
+//        for sentence in sentences {
+//            if !result.contains(where: { isSimilar($0, sentence) }) {
+//                result.append(sentence)
+//            }
+//        }
+//
+//        return result
+//    }
+//
+//    private static func isSimilar(_ lhs: String, _ rhs: String) -> Bool {
+//        let lhsWords = Set(lhs.lowercased().split(separator: " "))
+//        let rhsWords = Set(rhs.lowercased().split(separator: " "))
+//        let intersection = lhsWords.intersection(rhsWords)
+//        let ratio = Double(intersection.count) / Double(min(lhsWords.count, rhsWords.count))
+//        return ratio > 0.8
+//    }
+//}
+
 import Foundation
-import NaturalLanguage
 
 struct LocalAnalysisResult {
     let summary: String
@@ -105,7 +227,6 @@ struct LocalAnalysisResult {
 }
 
 final class LocalAnalysisService {
-
     private static let stopWords: Set<String> = [
         "и", "в", "во", "не", "что", "он", "на", "я", "с", "со", "как", "а", "то", "все", "она", "так", "его",
         "но", "да", "ты", "к", "у", "же", "вы", "за", "бы", "по", "только", "ее", "мне", "было", "вот", "от",
@@ -113,108 +234,29 @@ final class LocalAnalysisService {
         "или", "ни", "быть", "был", "него", "до", "вас", "нибудь", "опять", "уж", "вам", "ведь", "там", "потом",
         "себя", "ничего", "ей", "может", "они", "тут", "где", "есть", "надо", "ней", "для", "мы", "тебя", "их",
         "чем", "была", "сам", "чтоб", "без", "будто", "чего", "раз", "тоже", "себе", "под", "будет", "ж", "тогда",
-        "кто", "этот"
+        "кто", "этот", "это", "ее", "её", "никогда", "никому", "никогда не"
     ]
 
-    static func analyze(text: String) -> LocalAnalysisResult {
-        let sentences = splitIntoSentences(text)
-        let keywords = extractKeywords(from: text)
-        let lemmatizedKeywords = keywords.map { lemmatize($0) }
+    static func analyze(text: String, completion: @escaping (LocalAnalysisResult) -> Void) {
+        LemmatizerService.shared.lemmatize(text: text) { lemmas in
+            let wordCounts = Dictionary(grouping: lemmas, by: { $0 }).mapValues { $0.count }
 
-        let ranked = rankSentences(sentences, keywords: Set(lemmatizedKeywords))
-        let topSentences = ranked
-            .sorted { $0.score > $1.score }
-            .prefix(3)
-            .map { $0.sentence }
+            let sortedKeywords = wordCounts
+                .filter { !$0.key.isEmpty }
+                .sorted { $0.value > $1.value }
+                .map { $0.key }
 
-        let summarySentences = sentences.filter { topSentences.contains($0) }
-        let cleanedSummary = removeSimilarSentences(from: summarySentences)
-            .joined(separator: "\n\n")
+            let filtered = sortedKeywords.filter { !stopWords.contains($0) }
 
-        return LocalAnalysisResult(
-            summary: cleanedSummary,
-            keywords: Array(Set(lemmatizedKeywords)).prefix(10).map { $0 }
-        )
-    }
-
-    // MARK: - Helpers
-
-    private static func splitIntoSentences(_ text: String) -> [String] {
-        var sentences: [String] = []
-        let tokenizer = NLTokenizer(unit: .sentence)
-        tokenizer.string = text
-        tokenizer.enumerateTokens(in: text.startIndex..<text.endIndex) { range, _ in
-            let sentence = String(text[range]).trimmingCharacters(in: .whitespacesAndNewlines)
-            if !sentence.isEmpty {
-                sentences.append(sentence)
-            }
-            return true
-        }
-        return sentences
-    }
-
-    private static func extractKeywords(from text: String) -> [String] {
-        var keywords: [String] = []
-
-        let tagger = NLTagger(tagSchemes: [.lexicalClass, .lemma])
-        tagger.string = text
-
-        let options: NLTagger.Options = [.omitPunctuation, .omitWhitespace, .joinNames]
-
-        tagger.enumerateTags(in: text.startIndex..<text.endIndex,
-                             unit: .word,
-                             scheme: .lexicalClass,
-                             options: options) { tag, range in
-            guard tag == .noun || tag == .verb else { return true }
-
-            let word = String(text[range]).lowercased()
-            let lemma = lemmatize(word)
-
-            if !stopWords.contains(lemma) {
-                keywords.append(lemma)
-            }
-            return true
-        }
-
-        return keywords
-    }
-
-    private static func lemmatize(_ word: String) -> String {
-        let tagger = NLTagger(tagSchemes: [.lemma])
-        tagger.string = word
-
-        let range = word.startIndex..<word.endIndex
-        let lemma = tagger.tag(at: word.startIndex, unit: .word, scheme: .lemma).0?.rawValue
-
-        return lemma?.lowercased() ?? word.lowercased()
-    }
-
-    private static func rankSentences(_ sentences: [String], keywords: Set<String>) -> [(sentence: String, score: Int)] {
-        return sentences.map { sentence in
-            let words = sentence.lowercased().components(separatedBy: CharacterSet.alphanumerics.inverted)
-            let lemmas = words.map { lemmatize($0) }
-            let score = lemmas.filter { keywords.contains($0) }.count
-            return (sentence: sentence, score: score)
+            let summary = summarize(text: text)
+            let result = LocalAnalysisResult(summary: summary, keywords: Array(filtered.prefix(10)))
+            completion(result)
         }
     }
 
-    private static func removeSimilarSentences(from sentences: [String]) -> [String] {
-        var result: [String] = []
-
-        for sentence in sentences {
-            if !result.contains(where: { isSimilar($0, sentence) }) {
-                result.append(sentence)
-            }
-        }
-
-        return result
-    }
-
-    private static func isSimilar(_ lhs: String, _ rhs: String) -> Bool {
-        let lhsWords = Set(lhs.lowercased().split(separator: " "))
-        let rhsWords = Set(rhs.lowercased().split(separator: " "))
-        let intersection = lhsWords.intersection(rhsWords)
-        let ratio = Double(intersection.count) / Double(min(lhsWords.count, rhsWords.count))
-        return ratio > 0.8
+    private static func summarize(text: String) -> String {
+        let sentences = text.components(separatedBy: ".").filter { !$0.trimmingCharacters(in: .whitespaces).isEmpty }
+        return sentences.prefix(3).joined(separator: ". ") + (sentences.count > 2 ? "..." : "")
     }
 }
+

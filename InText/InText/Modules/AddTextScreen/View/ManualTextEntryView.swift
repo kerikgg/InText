@@ -35,15 +35,16 @@ struct ManualTextEntryView: View {
     @Environment(\.dismiss) var dismiss
     @State private var title: String = ""
     @State private var content: String = ""
+    let bookId: String
 
     let onSave: (TextModel) -> Void
 
     var body: some View {
         NavigationStack {
             VStack(spacing: 20) {
-                TextField("Заголовок", text: $title)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-
+                CustomTextField(title: "Заголовок", text: $title)
+//                TextField("Заголовок", text: $title)
+//                    .textFieldStyle(RoundedBorderTextFieldStyle())
                 TextEditor(text: $content)
                     .frame(height: 300)
                     .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray.opacity(0.5)))
@@ -53,6 +54,7 @@ struct ManualTextEntryView: View {
                 Button("Сохранить") {
                     let newText = TextModel(
                         id: UUID().uuidString,
+                        bookId: bookId,
                         title: title.isEmpty ? "Без названия" : title,
                         content: content,
                         createdAt: Date()
@@ -60,7 +62,7 @@ struct ManualTextEntryView: View {
                     onSave(newText)
                     dismiss()
                 }
-                .buttonStyle(MainActionButtonStyle())
+                .buttonStyle(MainActionButtonStyle(color: content.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? .gray : .purple))
                 .disabled(content.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
             }
             .padding()

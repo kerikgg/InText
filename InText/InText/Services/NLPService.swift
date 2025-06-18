@@ -114,6 +114,62 @@ final class NLPService {
             }
         }.resume()
     }
+
+    func generateQuiz(for text: String, completion: @escaping (Result<[QuizQuestion], Error>) -> Void) {
+        let prompt = """
+        Сгенерируй 5 тестовых вопросов по следующему тексту. Каждый вопрос с 4 вариантами ответа (один правильный). Ответ в JSON:
+        [
+          {
+            "question": "Вопрос?",
+            "options": ["A", "B", "C", "D"],
+            "correctAnswer": "A"
+          },
+          ...
+        ]
+
+        Текст:
+        \(text)
+        """
+
+        let body: [String: Any] = [
+            "model": "gpt-3.5-turbo",
+            "messages": [
+                ["role": "user", "content": prompt]
+            ],
+            "temperature": 0.7
+        ]
+
+        guard let url = URL(string: "https://api.openai.com/v1/chat/completions"),
+              let apiKey = Bundle.main.infoDictionary?["OPENAI_API_KEY"] as? String else {
+            completion(.failure(NSError(domain: "Invalid URL/API Key", code: -1)))
+            return
+        }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = try? JSONSerialization.data(withJSONObject: body)
+
+        URLSession.shared.dataTask(with: request) { data, _, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+
+            guard let data = data,
+                  let response = try? JSONDecoder().decode(OpenAIChatResponse.self, from: data),
+                  let message = response.choices.first?.message.content,
+                  let questionsData = message.data(using: .utf8),
+                  let questions = try? JSONDecoder().decode([QuizQuestion].self, from: questionsData) else {
+                completion(.failure(NSError(domain: "Failed to parse response", code: -2)))
+                return
+            }
+
+            completion(.success(questions))
+        }.resume()
+    }
+
 }
 
 // MARK: - Модели

@@ -3,21 +3,21 @@ import SwiftUI
 struct SettingsView: View {
     @ObservedObject var viewModel: ProfileViewModel
     @State private var showLogoutAlert = false
+    @State private var deletionCompleted = false
+    @EnvironmentObject var themeService: AppThemeService
 
     var body: some View {
         NavigationView {
             List {
-                Section(header: Text("Профиль")) {
-                    NavigationLink("Изменить аватар") {
-                        AvatarPickerView(viewModel: viewModel)
-                    }
-                }
-
                 Section(header: Text("Настройки")) {
-                    Toggle("Тёмная тема", isOn: $viewModel.isDarkMode)
+                    Toggle("Тёмная тема", isOn: $themeService.isDarkMode)
                 }
 
                 Section {
+                    Button("Удалить все данные", role: .destructive) {
+                        viewModel.showDeleteAllDataAlert = true
+                    }
+
                     Button("Удалить аккаунт", role: .destructive) {
                         viewModel.showDeleteAlert = true
                     }
@@ -27,6 +27,7 @@ struct SettingsView: View {
                     }
                 }
             }
+            .preferredColorScheme(themeService.isDarkMode ? .dark : .light)
             .navigationTitle("Настройки")
             .navigationBarTitleDisplayMode(.inline)
             .alert("Удалить аккаунт?", isPresented: $viewModel.showDeleteAlert) {
@@ -44,6 +45,12 @@ struct SettingsView: View {
                 Button("Отмена", role: .cancel) {}
             } message: {
                 Text("Вы уверены, что хотите выйти?")
+            }
+            .alert("Удалить все данные?", isPresented: $viewModel.showDeleteAllDataAlert) {
+                Button("Удалить", role: .destructive) {
+                    viewModel.deleteAllData()
+                }
+                Button("Отмена", role: .cancel) {}
             }
         }
     }

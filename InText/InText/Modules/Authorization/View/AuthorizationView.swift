@@ -1,10 +1,3 @@
-//
-//  AuthorizationView.swift
-//  InText
-//
-//  Created by kerik on 28.05.2025.
-//
-
 import SwiftUI
 
 struct AuthorizationView: View {

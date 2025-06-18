@@ -213,11 +213,5 @@ struct OCRView: View {
                 }
             }
         }
-        .sheet(isPresented: $isEditing) {
-            TextEditorSheet(initialText: fullText) { editedText in
-                onScan(editedText)
-                dismiss()
-            }
-        }
     }
 }

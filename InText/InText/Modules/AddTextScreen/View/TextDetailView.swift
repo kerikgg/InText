@@ -209,7 +209,7 @@ struct TextDetailView: View {
                     Button("Анализировать текст") {
                         vm.analyze(textModel: text)
                     }
-                    .buttonStyle(MainActionButtonStyle())
+                    .buttonStyle(MainActionButtonStyle(color: .purple))
 
                     if vm.isAnalyzing {
                         AnimatedAnalysisView()
@@ -232,6 +232,15 @@ struct TextDetailView: View {
                                 .font(.subheadline)
                                 .foregroundColor(.secondary)
                         }
+
+                        if !vm.keywordFrequencies.isEmpty {
+                            KeywordChartView(frequencies: vm.keywordFrequencies)
+                        } else {
+                            Button("Построить график") {
+                                vm.generateChart(from: text.content)
+                            }
+                            .buttonStyle(MainActionButtonStyle(color: .purple))
+                        }
                     }
                 }
 
@@ -241,7 +250,7 @@ struct TextDetailView: View {
                         saveText()
                         dismiss()
                     }
-                    .buttonStyle(MainActionButtonStyle())
+                    .buttonStyle(MainActionButtonStyle(color: .purple))
                     .padding(.top)
                 }
             }
@@ -258,6 +267,6 @@ struct TextDetailView: View {
     }
 
     private func saveText() {
-        TextsService.shared.save(text: text)
+        TextsService.shared.save(text: text, bookId: text.bookId)
     }
 }

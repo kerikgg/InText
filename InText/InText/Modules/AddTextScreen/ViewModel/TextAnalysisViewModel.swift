@@ -69,62 +69,66 @@
 //        }
 //    }
 //}
-import Foundation
+//import Foundation
+//import NaturalLanguage
+//
+//@MainActor
+//final class TextAnalysisViewModel: ObservableObject {
+//    @Published var isAnalyzing = false
+//    @Published var summary: String?
+//    @Published var keywords: [String] = []
+//    @Published var analysisMode: AnalysisMode = .gpt
+//    @Published var keywordFrequencies: [KeywordFrequency] = []
+//
+//
+//    func analyze(textModel: TextModel) {
+//        summary = nil
+//        keywords = []
+//        isAnalyzing = true
+//
+//        switch analysisMode {
+//        case .gpt:
+//            NLPService.shared.analyze(text: textModel.content) { [weak self] result in
+//                DispatchQueue.main.async {
+//                    self?.isAnalyzing = false
+//                    switch result {
+//                    case .success(let output):
+//                        self?.summary = output.summary
+//                        self?.keywords = output.keywords
+//
+//                        // сохраняем
+//                        TextsService.shared.updateAnalysis(
+//                            for: textModel.id,
+//                            summary: output.summary,
+//                            keywords: output.keywords
+//                        )
+//                    case .failure(let error):
+//                        print("Ошибка GPT: \(error.localizedDescription)")
+//                    }
+//                }
+//            }
+//
+//        case .local:
+//            LocalAnalysisService.analyze(text: textModel.content) { [weak self] result in
+//                DispatchQueue.main.async {
+//                    self?.isAnalyzing = false
+//                    self?.summary = result.summary
+//                    self?.keywords = result.keywords
+//
+//                    // Сохраняем в БД
+//                    TextsService.shared.updateAnalysis(
+//                        for: textModel.id,
+//                        summary: result.summary,
+//                        keywords: result.keywords
+//                    )
+//                }
+//            }
+//        }
+//        guard let summary = textModel.summary, let keywords = textModel.keywords else { return }
+//        TextsService.shared.updateAnalysis(for: textModel.id, summary: summary, keywords: keywords)
+//    }
 
-@MainActor
-final class TextAnalysisViewModel: ObservableObject {
-    @Published var isAnalyzing = false
-    @Published var summary: String?
-    @Published var keywords: [String] = []
-    @Published var analysisMode: AnalysisMode = .gpt
 
-
-    func analyze(textModel: TextModel) {
-        summary = nil
-        keywords = []
-        isAnalyzing = true
-
-        switch analysisMode {
-        case .gpt:
-            NLPService.shared.analyze(text: textModel.content) { [weak self] result in
-                DispatchQueue.main.async {
-                    self?.isAnalyzing = false
-                    switch result {
-                    case .success(let output):
-                        self?.summary = output.summary
-                        self?.keywords = output.keywords
-
-                        // сохраняем
-                        TextsService.shared.updateAnalysis(
-                            for: textModel.id,
-                            summary: output.summary,
-                            keywords: output.keywords
-                        )
-                    case .failure(let error):
-                        print("Ошибка GPT: \(error.localizedDescription)")
-                    }
-                }
-            }
-
-        case .local:
-            DispatchQueue.global().async {
-                let result = LocalAnalysisService.analyze(text: textModel.content)
-                DispatchQueue.main.async {
-                    self.isAnalyzing = false
-                    self.summary = result.summary
-                    self.keywords = result.keywords
-
-                    TextsService.shared.updateAnalysis(
-                        for: textModel.id,
-                        summary: result.summary,
-                        keywords: result.keywords
-                    )
-                }
-            }
-        }
-        guard let summary = textModel.summary, let keywords = textModel.keywords else { return }
-        TextsService.shared.updateAnalysis(for: textModel.id, summary: summary, keywords: keywords)
-    }
     //    func analyze(text: String) {
     //        summary = nil
     //        keywords = []
@@ -158,4 +162,82 @@ final class TextAnalysisViewModel: ObservableObject {
     //
     //        TextsService.shared.updateAnalysis(for: text.id, summary: summary, keywords: keywords)
     //    }
+//}
+
+import Foundation
+
+@MainActor
+final class TextAnalysisViewModel: ObservableObject {
+    @Published var isAnalyzing = false
+    @Published var summary: String?
+    @Published var keywords: [String] = []
+    @Published var keywordFrequencies: [KeywordFrequency] = []
+    @Published var analysisMode: AnalysisMode = .gpt
+    @Published var showChart: Bool = false
+
+    func analyze(textModel: TextModel) {
+        summary = nil
+        keywords = []
+        keywordFrequencies = []
+        isAnalyzing = true
+
+        switch analysisMode {
+        case .gpt:
+            NLPService.shared.analyze(text: textModel.content) { [weak self] result in
+                DispatchQueue.main.async {
+                    self?.isAnalyzing = false
+                    switch result {
+                    case .success(let output):
+                        self?.summary = output.summary
+                        self?.keywords = output.keywords
+                        self?.generateFrequencies(from: textModel.content)
+                        TextsService.shared.updateAnalysis(for: textModel.id, summary: output.summary, keywords: output.keywords)
+                    case .failure(let error):
+                        print("Ошибка GPT: \(error.localizedDescription)")
+                    }
+                }
+            }
+
+        case .local:
+            LocalAnalysisService.analyze(text: textModel.content) { [weak self] result in
+                DispatchQueue.main.async {
+                    self?.isAnalyzing = false
+                    self?.summary = result.summary
+                    self?.keywords = result.keywords
+                    self?.generateFrequencies(from: textModel.content)
+
+                    // Сохраняем в БД
+                    TextsService.shared.updateAnalysis(
+                        for: textModel.id,
+                        summary: result.summary,
+                        keywords: result.keywords
+                    )
+                }
+            }
+//            DispatchQueue.global().async {
+//                let result = LocalAnalysisService.analyze(text: textModel.content)
+//                DispatchQueue.main.async {
+//                    self.isAnalyzing = false
+//                    self.summary = result.summary
+//                    self.keywords = result.keywords
+//                    self.generateFrequencies(from: textModel.content)
+//                    TextsService.shared.updateAnalysis(for: textModel.id, summary: result.summary, keywords: result.keywords)
+//                }
+//            }
+        }
+    }
+
+    /// Отдельный метод генерации частот
+    func generateFrequencies(from content: String) {
+        LemmatizerService.shared.keywordFrequencies(in: content, keywords: keywords) { [weak self] frequencies in
+            DispatchQueue.main.async {
+                self?.keywordFrequencies = frequencies
+            }
+        }
+    }
+
+    func generateChart(from content: String) {
+        generateFrequencies(from: content)
+    }
+
 }

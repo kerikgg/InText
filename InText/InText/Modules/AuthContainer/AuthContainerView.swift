@@ -1,10 +1,3 @@
-//
-//  AuthContainerView.swift
-//  InText
-//
-//  Created by kerik on 28.05.2025.
-//
-
 import SwiftUI
 
 struct AuthContainerView: View {
@@ -12,7 +5,7 @@ struct AuthContainerView: View {
     @State private var showLogin = false
 
     var body: some View {
-        NavigationStack {
+        NavigationView {
             if isLoggedIn {
                 MainTabView()
             } else {

@@ -1,10 +1,3 @@
-//
-//  RegistrationViewModel.swift
-//  InText
-//
-//  Created by kerik on 09.05.2025.
-//
-
 import Foundation
 import Combine
 import SwiftUI

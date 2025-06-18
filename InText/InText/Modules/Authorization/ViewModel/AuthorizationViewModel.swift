@@ -1,10 +1,3 @@
-//
-//  AuthorizationViewModel.swift
-//  InText
-//
-//  Created by kerik on 28.05.2025.
-//
-
 import Foundation
 import Combine
 import SwiftUI

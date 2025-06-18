@@ -1,10 +1,3 @@
-//
-//  CustomTextField.swift
-//  InText
-//
-//  Created by kerik on 09.05.2025.
-//
-
 import SwiftUI
 
 struct CustomTextField: View {

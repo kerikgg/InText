@@ -5,9 +5,11 @@ final class ProfileViewModel: ObservableObject {
     @AppStorage("isLoggedIn") var isLoggedIn: Bool = false
     @Published var isDarkMode = false
     @Published var showDeleteAlert = false
+    @Published var showDeleteAllDataAlert = false
     @Published var user: UserModel?
 
     private let authService = AuthService.shared
+    private let coreDataService = CoreDataService.shared
 
     init() {
         loadUser()
@@ -38,6 +40,11 @@ final class ProfileViewModel: ObservableObject {
                 }
             }
         }
+    }
+
+    func deleteAllData() {
+        coreDataService.deleteAllBooks()
+        coreDataService.deleteAllTexts()
     }
 
     func logout() {
