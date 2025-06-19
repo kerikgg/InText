@@ -123,19 +123,106 @@
 //    }
 //}
 
+//import SwiftUI
+//import UniformTypeIdentifiers
+//
+//struct AddTextView: View {
+//    @Environment(\.dismiss) var dismiss
+//    @State private var editingText: IdentifiableText?
+//    @StateObject private var viewModel: AddTextViewModel
+//
+//    var bookId: String
+//
+//    init(bookId: String) {
+//        self.bookId = bookId
+//        _viewModel = StateObject(wrappedValue: AddTextViewModel(bookId: bookId))
+//    }
+//
+//    var body: some View {
+//        NavigationStack {
+//            VStack(spacing: 24) {
+//                ActionSection(
+//                    title: "Ввести вручную",
+//                    description: "Создайте отрывок с нуля, написав текст самостоятельно.",
+//                    action: {
+//                        editingText = IdentifiableText(text: "")
+//                    }
+//                )
+//
+//                ActionSection(
+//                    title: "Сканировать",
+//                    description: "Используйте камеру для сканирования текста.",
+//                    action: {
+//                        viewModel.showScanner = true
+//                    }
+//                )
+//
+//                ActionSection(
+//                    title: "Загрузить файл",
+//                    description: "Импортируйте текст из .txt-файла, хранящегося на устройстве.",
+//                    action: {
+//                        viewModel.showFilePicker = true
+//                    }
+//                )
+//            }
+//            .padding()
+//            .navigationTitle("Добавить отрывок")
+//            .sheet(isPresented: $viewModel.showScanner) {
+//                OCRView { scannedText in
+//                    viewModel.showScanner = false
+//                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+//                        editingText = IdentifiableText(text: scannedText)
+//                    }
+//                }
+//            }
+//            .fileImporter(
+//                isPresented: $viewModel.showFilePicker,
+//                allowedContentTypes: [.plainText]
+//            ) { result in
+//                viewModel.showFilePicker = false
+//                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+//                    viewModel.handleFileResult(result) { content in
+//                        editingText = IdentifiableText(text: content)
+//                    }
+//                }
+//            }
+//            .sheet(item: $editingText) { item in
+//                TextEditorSheet(initialText: item.text) { title, finalText in
+//                    CoreDataService.shared.saveText(title: title, content: finalText, bookId: bookId)
+//                    dismiss()
+//                }
+//            }
+//
+//        }
+//    }
+//}
+
 import SwiftUI
 import UniformTypeIdentifiers
 
 struct AddTextView: View {
     @Environment(\.dismiss) var dismiss
-    @State private var editingText: IdentifiableText?
     @StateObject private var viewModel: AddTextViewModel
+    @State private var activeSheet: ActiveSheet?
+    @State private var showDocumentPicker = false
 
     var bookId: String
 
     init(bookId: String) {
         self.bookId = bookId
         _viewModel = StateObject(wrappedValue: AddTextViewModel(bookId: bookId))
+    }
+
+    enum ActiveSheet: Identifiable {
+        case scanner
+        case editor(String)
+
+        var id: String {
+            switch self {
+            case .scanner: return "scanner"
+            case .editor: return "editor"
+            }
+        }
     }
 
     var body: some View {
@@ -145,7 +232,7 @@ struct AddTextView: View {
                     title: "Ввести вручную",
                     description: "Создайте отрывок с нуля, написав текст самостоятельно.",
                     action: {
-                        editingText = IdentifiableText(text: "")
+                        activeSheet = .editor("")
                     }
                 )
 
@@ -153,7 +240,7 @@ struct AddTextView: View {
                     title: "Сканировать",
                     description: "Используйте камеру для сканирования текста.",
                     action: {
-                        viewModel.showScanner = true
+                        activeSheet = .scanner
                     }
                 )
 
@@ -161,43 +248,35 @@ struct AddTextView: View {
                     title: "Загрузить файл",
                     description: "Импортируйте текст из .txt-файла, хранящегося на устройстве.",
                     action: {
-                        viewModel.showFilePicker = true
+                        DispatchQueue.main.async {
+                            showDocumentPicker = true
+                        }
                     }
                 )
-                //                Button("Ввести вручную") {
-                //                    editingText = IdentifiableText(text: "")
-                //                }
-                //                .buttonStyle(MainActionButtonStyle(color: .purple))
-                //
-                //                Button("Сканировать") {
-                //                    viewModel.showScanner = true
-                //                }
-                //                .buttonStyle(MainActionButtonStyle(color: .purple))
-                //
-                //                Button("Загрузить файл") {
-                //                    viewModel.showFilePicker = true
-                //                }
-                //                .buttonStyle(MainActionButtonStyle(color: .purple))
             }
             .padding()
             .navigationTitle("Добавить отрывок")
-            .sheet(isPresented: $viewModel.showScanner) {
-                OCRView { scannedText in
-                    editingText = IdentifiableText(text: scannedText)
+            .sheet(item: $activeSheet) { sheet in
+                switch sheet {
+                case .scanner:
+                    OCRView { scannedText in
+                        activeSheet = nil
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                            activeSheet = .editor(scannedText)
+                        }
+                    }
+
+                case .editor(let text):
+                    TextEditorSheet(initialText: text) { title, finalText in
+                        CoreDataService.shared.saveText(title: title, content: finalText, bookId: bookId)
+                        dismiss()
+                    }
                 }
             }
-            .fileImporter(
-                isPresented: $viewModel.showFilePicker,
-                allowedContentTypes: [.plainText]
-            ) { result in
-                viewModel.handleFileResult(result) { content in
-                    editingText = IdentifiableText(text: content)
-                }
-            }
-            .sheet(item: $editingText) { item in
-                TextEditorSheet(initialText: item.text) { title, finalText in
-                    CoreDataService.shared.saveText(title: title, content: finalText, bookId: bookId)
-                    dismiss()
+            .sheet(isPresented: $showDocumentPicker) {
+                DocumentPicker { content in
+                    showDocumentPicker = false
+                    activeSheet = .editor(content)
                 }
             }
         }

@@ -193,24 +193,44 @@
 import SwiftUI
 import ImageOCRUI
 
+//struct OCRView: View {
+//    @Environment(\.dismiss) private var dismiss
+//    @State private var fullText: String = ""
+//    @State private var isEditing = false
+//
+//    let onScan: (String) -> Void
+//
+//    var body: some View {
+//        VStack {
+//            if fullText.isEmpty {
+//                ScannerView { pages in
+//                    if let pages = pages {
+//                        self.fullText = pages.joined(separator: "\n\n")
+//                        self.isEditing = true
+//                    } else {
+//                        dismiss()
+//                    }
+//                }
+//            }
+//        }
+//    }
+//}
+
+import SwiftUI
+import ImageOCRUI
+
 struct OCRView: View {
     @Environment(\.dismiss) private var dismiss
-    @State private var fullText: String = ""
-    @State private var isEditing = false
 
     let onScan: (String) -> Void
 
     var body: some View {
-        VStack {
-            if fullText.isEmpty {
-                ScannerView { pages in
-                    if let pages = pages {
-                        self.fullText = pages.joined(separator: "\n\n")
-                        self.isEditing = true
-                    } else {
-                        dismiss()
-                    }
-                }
+        ScannerView { pages in
+            if let pages = pages {
+                let scannedText = pages.joined(separator: "\n\n")
+                onScan(scannedText)
+            } else {
+                dismiss()
             }
         }
     }
