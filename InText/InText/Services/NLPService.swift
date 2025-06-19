@@ -115,21 +115,22 @@ final class NLPService {
         }.resume()
     }
 
+
     func generateQuiz(for text: String, completion: @escaping (Result<[QuizQuestion], Error>) -> Void) {
         let prompt = """
-        Сгенерируй 5 тестовых вопросов по следующему тексту. Каждый вопрос с 4 вариантами ответа (один правильный). Ответ в JSON:
-        [
-          {
-            "question": "Вопрос?",
-            "options": ["A", "B", "C", "D"],
-            "correctAnswer": "A"
-          },
-          ...
-        ]
-
-        Текст:
-        \(text)
-        """
+            Сгенерируй 5 тестовых вопросов по следующему тексту. Каждый вопрос с 4 вариантами ответа (один правильный). Ответ в JSON:
+            [
+              {
+                "question": "Вопрос?",
+                "options": ["A", "B", "C", "D"],
+                "correctAnswer": "A"
+              },
+              ...
+            ]
+            
+            Текст:
+            \(text)
+            """
 
         let body: [String: Any] = [
             "model": "gpt-3.5-turbo",
